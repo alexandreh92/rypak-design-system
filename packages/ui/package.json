@@ -3,11 +3,28 @@
   "version": "0.0.0",
   "sideEffects": false,
   "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./button": {
-      "types": "./src/button.tsx",
-      "import": "./dist/button.mjs",
-      "require": "./dist/button.js"
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./*": {
+      "import": {
+        "types": "./dist/*/index.d.mts",
+        "default": "./dist/*/index.mjs"
+      },
+      "require": {
+        "types": "./dist/*/index.d.ts",
+        "default": "./dist/*/index.js"
+      }
     }
   },
   "scripts": {
