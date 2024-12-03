@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@acme/ui/button";
+import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from '@rypak/ui/button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
   argTypes: {
     type: {
-      control: { type: "radio" },
-      options: ["button", "submit", "reset"],
+      control: { type: 'radio' },
+      options: ['button', 'submit', 'reset'],
     },
   },
 };
@@ -26,19 +26,19 @@ export const Primary: Story = {
       {...props}
       onClick={(): void => {
         // eslint-disable-next-line no-alert -- alert for demo
-        alert("Hello from Turborepo!");
+        alert('Hello from Turborepo!');
       }}
     >
       Hello
     </Button>
   ),
-  name: "Button",
+  name: 'Button',
   args: {
-    children: "Hello",
-    type: "button",
+    children: 'Hello',
+    type: 'button',
     style: {
-      color: "blue",
-      border: "1px solid gray",
+      color: 'blue',
+      border: '1px solid gray',
       padding: 10,
       borderRadius: 10,
     },
