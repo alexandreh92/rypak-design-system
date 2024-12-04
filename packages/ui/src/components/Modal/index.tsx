@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Portal } from '../Portal';
-import type { PortalProps } from '../Portal';
+import type { PortalProps, PortalHandleProps } from '../Portal';
 
 interface ModalProps extends PortalProps {
   children: React.ReactNode;
 }
 
-export function Modal({ children, ...rest }: ModalProps) {
-  return <Portal {...rest}>{children}</Portal>;
-}
+export const Modal = forwardRef<PortalHandleProps, ModalProps>(
+  ({ children, ...rest }, ref) => {
+    return (
+      <Portal ref={ref} {...rest}>
+        {children}
+      </Portal>
+    );
+  }
+);
+
+Modal.displayName = 'Modal';

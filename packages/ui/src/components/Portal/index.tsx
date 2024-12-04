@@ -4,13 +4,13 @@ import {
   forwardRef,
   useCallback,
   useImperativeHandle,
+  useState,
 } from 'react';
-import type { HTMLProps, ReactElement } from 'react';
 import { createPortal } from 'react-dom';
-import { useControlledVisibility } from '../../hooks/useControlledVisibility';
-import type { UseControlledVisibilityProps } from '../../hooks/useControlledVisibility';
+import { useUpdateEffect } from 'react-use';
+import type { HTMLProps, ReactElement } from 'react';
 
-interface PortalRootProps extends HTMLProps<HTMLDivElement> {
+interface PortalRootProps extends Omit<HTMLProps<HTMLDivElement>, 'ref'> {
   children: React.ReactNode;
   containerId: string;
   mountNode?: HTMLElement;
@@ -31,46 +31,40 @@ interface TriggerProps {
   onClick: () => void;
 }
 
-export interface PortalProps
-  extends PortalRootProps,
-    Pick<UseControlledVisibilityProps, 'visible'> {
+export interface PortalProps extends PortalRootProps {
   visible?: boolean;
   defaultVisible?: boolean;
-  onVisibilityChange?: (visible: boolean) => void;
   trigger?: ReactElement<TriggerProps>;
 }
 
-export const Portal = forwardRef(
-  (
-    { visible, onVisibilityChange, children, trigger, ...rest }: PortalProps,
-    ref
-  ) => {
-    const [isVisible, setIsVisible] = useControlledVisibility({
-      visible,
-      onChange: onVisibilityChange,
-    });
+export interface PortalHandleProps {
+  toggle: () => void;
+}
 
-    const close = useCallback(() => {
-      setIsVisible(false);
-    }, [setIsVisible]);
+export const Portal = forwardRef<PortalHandleProps, PortalProps>(
+  ({ visible, children, trigger, ...rest }, ref) => {
+    const [isVisible, setIsVisible] = useState(visible);
 
-    const open = useCallback(() => {
-      setIsVisible(true);
-    }, [setIsVisible]);
+    const toggle = useCallback(() => {
+      setIsVisible((oldState) => !oldState);
+    }, []);
+
+    useUpdateEffect(() => {
+      setIsVisible(visible);
+    }, [visible]);
 
     useImperativeHandle(
       ref,
       () => ({
-        open,
-        close,
+        toggle,
       }),
-      [open, close]
+      [toggle]
     );
 
     return (
       <>
         {isVisible && <PortalRoot {...rest}>{children}</PortalRoot>}
-        {trigger && cloneElement(trigger, { onClick: open })}
+        {trigger && cloneElement(trigger, { onClick: toggle })}
       </>
     );
   }
