@@ -5,9 +5,29 @@ function App() {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div onClick={() => setVisible((oldState) => !oldState)}>
+    <div>
       Welcome to Sandbox!
-      {visible && <Modal>pistolinha</Modal>}
+      <button type="button" onClick={() => setVisible((oldState) => !oldState)}>
+        toggle
+      </button>
+      <Modal visible={visible} containerId="test">
+        controlled
+      </Modal>
+      <div>
+        default visible:
+        <Modal visible containerId="test1">
+          default visible content
+        </Modal>
+      </div>
+      <div>
+        with trigger
+        <Modal
+          containerId="test2"
+          trigger={<button type="button">hello</button>}
+        >
+          trigger content
+        </Modal>
+      </div>
     </div>
   );
 }
