@@ -5,18 +5,26 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "vitest",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@rypak/ui": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "@rypak/ui": "workspace:*"
+    "react-use": "^17.5.1",
+    "styled-components": "^6.1.14"
   },
   "devDependencies": {
-    "@rypak/eslint-config": "workspace:*",
     "@eslint/js": "^9.15.0",
+    "@rypak/eslint-config": "workspace:*",
+    "@rypak/typescript-config": "workspace:*",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
@@ -24,9 +32,10 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.12.0",
-    "@rypak/typescript-config": "workspace:*",
+    "jsdom": "^26.0.0",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.15.0",
-    "vite": "^6.0.1"
+    "vite": "^6.0.1",
+    "vitest": "^3.0.3"
   }
 }

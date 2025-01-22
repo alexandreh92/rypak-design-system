@@ -1,58 +1,82 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ReactElement, HTMLProps } from 'react';
 
-import Root from "./Root";
-import Header from "./Header";
-import Body from "./Body";
-import Actions from "./Actions";
+import type { ModalRootProps } from './Root';
 
-import { Container } from "./styles";
+import Root from './Root';
+import Header from './Header';
+import Body from './Body';
+import Actions from './Actions';
 
-interface SharedModalProps {
-  children: ReactNode;
-}
+import { Container } from './styles';
 
-interface ComposableModal extends SharedModalProps {
+type SharedModalProps = ModalRootProps & {
+  defaultOpen?: boolean;
+  onClose?: () => void;
+};
+
+type ComposableModalProps = ModalRootProps & {
   composable: true;
-  children: ReactNode;
-}
+};
 
-interface ShorthandModal extends SharedModalProps {
-  onClose: () => void;
-  composable?: false;
+type ShorthandModalProps = SharedModalProps & {
+  composable?: never;
   title: string;
-  children: ReactNode;
-  icon: string;
   actions: ActionType[];
-}
+};
 
-type ModalProps = ShorthandModal | ComposableModal;
-
-function Modal({ children, ...props }: ModalProps) {
-  if (props.composable) return <div>hi</div>;
-
+function ShorthandModal({
+  id = 'modal-container',
+  children,
+  ...props
+}: ShorthandModalProps) {
   return (
-    <Root>
+    <Root id={id} {...props}>
       <Container>
-        {props.composable ? (
-          children
-        ) : (
-          <>
-            <Header
-              title={props.title}
-              onClose={props.onClose}
-              icon={props.icon}
-            />
-            <Body>{children}</Body>
-            <Actions>
-              {props.actions.map(({ text, ...rest }) => (
-                <Actions.Action key={text} {...rest}>
-                  {text}
-                </Actions.Action>
-              ))}
-            </Actions>
-          </>
-        )}
+        <Header title={props.title} onClose={props.onClose} />
+        <Body>{children}</Body>
+        <Actions actions={props.actions} />
       </Container>
     </Root>
   );
 }
+
+function ComposableModal({
+  id = 'modal-container',
+  composable,
+  children,
+  ...props
+}: ComposableModalProps) {
+  return (
+    <Root id={id} {...props}>
+      <Container>{children}</Container>
+    </Root>
+  );
+}
+
+type ModalProps =
+  | (ShorthandModalProps & { composable?: never })
+  | ComposableModalProps;
+
+function Modal({ id = 'modal-container', ...props }: ModalProps) {
+  // This abstraction is because we need to narrow down the type of the ModalProps.
+  // It also helps with the readability of the code and the code isolation.
+  return (
+    <>
+      {props.composable ? (
+        <ComposableModal {...(props as ComposableModalProps)}>
+          {props.children}
+        </ComposableModal>
+      ) : (
+        <ShorthandModal {...(props as ShorthandModalProps)}>
+          {props.children}
+        </ShorthandModal>
+      )}
+    </>
+  );
+}
+
+Modal.Header = Header;
+Modal.Body = Body;
+Modal.Actions = Actions;
+
+export default Modal;

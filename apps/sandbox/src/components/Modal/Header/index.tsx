@@ -1,17 +1,13 @@
-import { ReactNode, HTMLAttributes } from "react";
+import { ReactNode } from 'react';
 
-import { Container, Title, CloseButton } from "./styles";
+import { Container, Title, CloseButton } from './styles';
 
-interface SharedModalHeaderProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
+interface ComposableModalHeaderProps {
+  composable: true;
   children: ReactNode;
 }
 
-interface ComposableModalHeaderProps extends SharedModalHeaderProps {
-  composable: true;
-}
-
-interface ShorthandModalHeaderProps extends SharedModalHeaderProps {
+interface ShorthandModalHeaderProps {
   composable?: never;
   title: string;
   onClose?: () => void;
@@ -21,11 +17,11 @@ export type ModalHeaderProps =
   | ComposableModalHeaderProps
   | ShorthandModalHeaderProps;
 
-export default function Header({ children, ...props }: ModalHeaderProps) {
+export default function Header({ ...props }: ModalHeaderProps) {
   if (props.composable) {
     const { composable, ...rest } = props;
 
-    return <Container {...rest}>{children}</Container>;
+    return <Container {...rest}>{props.children}</Container>;
   }
 
   const { title, onClose, ...rest } = props;

@@ -1,62 +1,61 @@
-import { RefObject, useEffect, useCallback, useRef, ReactNode } from 'react';
+import {
+  RefObject,
+  useEffect,
+  useCallback,
+  useRef,
+  ReactNode,
+  useState,
+  useMemo,
+} from 'react';
 import { createPortal } from 'react-dom';
 
-interface SharedPortalEngineProps {
+export interface PortalEngineProps {
+  id?: string;
+  mountNode?: HTMLElement | RefObject<HTMLElement>;
   children: ReactNode;
+  persistOnUnmount?: boolean;
 }
 
-interface AutomaticPortalEngineProps extends SharedPortalEngineProps {
-  target?: never;
-  id: string;
-  persistOnUnmount: boolean;
-}
+const createNode = (id: string, mountNode: HTMLElement | null) => {
+  if (!mountNode) return null;
+  if (!id) return null;
 
-interface TargetedPortalEngineProps extends SharedPortalEngineProps {
-  target: HTMLElement | RefObject<HTMLElement>;
-}
+  const existingNode = document.getElementById(id);
+  if (existingNode) return existingNode;
 
-export type PortalEngineProps =
-  | AutomaticPortalEngineProps
-  | TargetedPortalEngineProps;
+  const newNode = document.createElement('div');
+  newNode.setAttribute('id', id);
+  return mountNode.appendChild(newNode);
+};
 
-export default function PortalEngine({ ...props }: PortalEngineProps) {
-  const createdNodeRef = useRef<HTMLElement | null>(null);
+export default function PortalEngine({
+  id = 'portal-container',
+  mountNode = document.body,
+  persistOnUnmount,
+  children,
+  ...props
+}: PortalEngineProps) {
+  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(
+    null
+  );
 
-  const createNode = useCallback(() => {
-    if (props.target) return;
-    if (!props.id) return;
+  const actualMountNode = useMemo(() => {
+    if (mountNode instanceof HTMLElement) return mountNode;
+    if (mountNode && 'current' in mountNode) return mountNode.current;
 
-    const existingNode = document.getElementById(props.id);
-    if (existingNode) {
-      createdNodeRef.current = existingNode;
-    } else {
-      const newNode = document.createElement('div');
-      newNode.id = props.id;
-      document.body.appendChild(newNode);
-      createdNodeRef.current = newNode;
-    }
-
-    return () => {
-      if (!props.target && !props.persistOnUnmount && createdNodeRef.current) {
-        createdNodeRef.current?.remove();
-        createdNodeRef.current = null;
-      }
-    };
-  }, [props]);
+    return null;
+  }, [mountNode]);
 
   useEffect(() => {
-    const remove = createNode();
+    const container = createNode(id, actualMountNode);
+    setPortalContainer(container);
 
-    return () => remove?.();
-  }, [createNode]);
+    return () => {
+      if (container && !persistOnUnmount) container.remove();
+    };
+  }, [id, actualMountNode, persistOnUnmount]);
 
-  const getTargetElement = useCallback(() => {
-    if (props.target instanceof HTMLElement) return props.target;
-    if (props.target && 'current' in props.target) return props.target.current;
-    if (createdNodeRef.current) return createdNodeRef.current;
-  }, []);
+  if (!portalContainer) return null;
 
-  const targetElement = getTargetElement();
-
-  return targetElement ? createPortal(props.children, targetElement) : null;
+  return createPortal(children, portalContainer);
 }

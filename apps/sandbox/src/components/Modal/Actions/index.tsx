@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
-import Action from "./Action";
+import { ReactNode } from 'react';
+import Action from './Action';
 
-import { Container } from "./styles";
+import { Container } from './styles';
 
 interface ComposableModalActionsProps {
   composable: true;
@@ -25,7 +25,9 @@ export default function Actions({ ...props }: ModalActionsProps) {
   return (
     <Container>
       {props.actions.map(({ text, ...rest }) => (
-        <Action {...rest}>{text}</Action>
+        <Action key={text} {...rest}>
+          {text}
+        </Action>
       ))}
     </Container>
   );

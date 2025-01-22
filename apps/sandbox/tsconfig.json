@@ -1,5 +1,11 @@
 {
   "extends": "@rypak/typescript-config/react-app.json",
   "include": ["."],
-  "exclude": ["dist", "build", "node_modules"]
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "types": ["vitest/globals"],
+    "paths": {
+      "test-utils": ["./src/setup/tests/test-utils"]
+    }
+  }
 }
