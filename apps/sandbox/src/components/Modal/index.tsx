@@ -1,6 +1,7 @@
-import { ReactElement, HTMLProps } from 'react';
+import { forwardRef } from 'react';
 
 import type { ModalRootProps } from './Root';
+import type { PortalHandles } from '../Portal';
 
 import Root from './Root';
 import Header from './Header';
@@ -24,59 +25,74 @@ type ShorthandModalProps = SharedModalProps & {
   actions: ActionType[];
 };
 
-function ShorthandModal({
-  id = 'modal-container',
-  children,
-  ...props
-}: ShorthandModalProps) {
-  return (
-    <Root id={id} {...props}>
-      <Container>
-        <Header title={props.title} onClose={props.onClose} />
-        <Body>{children}</Body>
-        <Actions actions={props.actions} />
-      </Container>
-    </Root>
-  );
-}
+const ShorthandModal = forwardRef<PortalHandles, ShorthandModalProps>(
+  ({ id = 'modal-container', children, ...props }, ref) => {
+    return (
+      <Root ref={ref} id={id} {...props}>
+        <Container>
+          <Header title={props.title} onClose={props.onClose} />
+          <Body>{children}</Body>
+          <Actions actions={props.actions} />
+        </Container>
+      </Root>
+    );
+  }
+);
 
-function ComposableModal({
-  id = 'modal-container',
-  composable,
-  children,
-  ...props
-}: ComposableModalProps) {
-  return (
-    <Root id={id} {...props}>
-      <Container>{children}</Container>
-    </Root>
-  );
-}
+ShorthandModal.displayName = 'ShorthandModal';
+
+const ComposableModal = forwardRef<PortalHandles, ComposableModalProps>(
+  ({ id = 'modal-container', composable, children, ...props }, ref) => {
+    return (
+      <Root ref={ref} id={id} {...props}>
+        <Container>{children}</Container>
+      </Root>
+    );
+  }
+);
+
+ComposableModal.displayName = 'ComposableModal';
 
 type ModalProps =
   | (ShorthandModalProps & { composable?: never })
   | ComposableModalProps;
 
-function Modal({ id = 'modal-container', ...props }: ModalProps) {
-  // This abstraction is because we need to narrow down the type of the ModalProps.
-  // It also helps with the readability of the code and the code isolation.
-  return (
-    <>
-      {props.composable ? (
-        <ComposableModal {...(props as ComposableModalProps)}>
-          {props.children}
-        </ComposableModal>
-      ) : (
-        <ShorthandModal {...(props as ShorthandModalProps)}>
-          {props.children}
-        </ShorthandModal>
-      )}
-    </>
-  );
-}
+const Modal = forwardRef<PortalHandles, ModalProps>(
+  ({ id = 'modal-container', ...props }, ref) => {
+    // This abstraction is because we need to narrow down the type of the ModalProps.
+    // It also helps with the readability of the code and the code isolation.
+    return (
+      <>
+        {props.composable ? (
+          <ComposableModal
+            id={id}
+            ref={ref}
+            {...(props as ComposableModalProps)}
+          >
+            {props.children}
+          </ComposableModal>
+        ) : (
+          <ShorthandModal id={id} ref={ref} {...(props as ShorthandModalProps)}>
+            {props.children}
+          </ShorthandModal>
+        )}
+      </>
+    );
+  }
+);
 
-Modal.Header = Header;
-Modal.Body = Body;
-Modal.Actions = Actions;
+Modal.displayName = 'Modal';
 
-export default Modal;
+type ModalComponent = typeof Modal & {
+  Header: typeof Header;
+  Body: typeof Body;
+  Actions: typeof Actions;
+};
+
+const ExtendedModal = Object.assign(Modal, {
+  Header,
+  Body,
+  Actions,
+}) as ModalComponent;
+
+export default ExtendedModal;

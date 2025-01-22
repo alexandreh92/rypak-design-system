@@ -5,6 +5,8 @@ import {
   HTMLProps,
   useState,
   useCallback,
+  forwardRef,
+  useImperativeHandle,
 } from 'react';
 
 import PortalEngine from './PortalEngine';
@@ -27,36 +29,55 @@ interface ControlledPortalProps extends SharedPortalProps {
 
 export type PortalProps = TriggerablePortalProps | ControlledPortalProps;
 
-export default function Portal({ isOpen, children, ...props }: PortalProps) {
-  const [internalOpen, setInternalOpen] = useState(isOpen);
-  const isControlled = isOpen !== undefined && !isOpen;
-
-  const openState = isControlled ? isOpen : internalOpen;
-
-  const handleTriggerClick: React.MouseEventHandler<any> = (e) => {
-    console.log({ isControlled });
-    if (isControlled) return;
-    if (props.trigger?.props?.onClick) props.trigger.props.onClick(e);
-
-    setInternalOpen((oldState) => !oldState);
-  };
-
-  return (
-    <>
-      {openState && <PortalEngine {...props}>{children}</PortalEngine>}
-      {!isControlled &&
-        props.trigger &&
-        cloneElement(props.trigger, {
-          onClick: handleTriggerClick,
-        })}
-    </>
-  );
+export interface PortalHandles {
+  toggle: () => void;
 }
 
-const Foo = () => {
-  return (
-    <Portal id="foo" trigger={<button type="button">my button</button>}>
-      <>hi</>
-    </Portal>
-  );
-};
+const Portal = forwardRef<PortalHandles, PortalProps>(
+  ({ isOpen, children, ...props }, ref) => {
+    const [internalOpen, setInternalOpen] = useState(isOpen);
+    const isControlled = isOpen !== undefined && isOpen;
+
+    const openState = isControlled ? isOpen : internalOpen;
+    console.log({ isControlled, isOpen, internalOpen });
+
+    const handleToggle = useCallback(() => {
+      if (isControlled) return;
+
+      setInternalOpen((oldState) => !oldState);
+    }, [isControlled]);
+
+    const handleTriggerClick: React.MouseEventHandler<any> = useCallback(
+      (e) => {
+        if (isControlled) return;
+        if (props.trigger?.props?.onClick) props.trigger.props.onClick(e);
+
+        setInternalOpen((oldState) => !oldState);
+      },
+      [isControlled, props.trigger]
+    );
+
+    useImperativeHandle(
+      ref,
+      () => ({
+        toggle: handleToggle,
+      }),
+      []
+    );
+
+    return (
+      <>
+        {openState && <PortalEngine {...props}>{children}</PortalEngine>}
+        {!isControlled &&
+          props.trigger &&
+          cloneElement(props.trigger, {
+            onClick: handleTriggerClick,
+          })}
+      </>
+    );
+  }
+);
+
+Portal.displayName = 'Portal';
+
+export default Portal;
