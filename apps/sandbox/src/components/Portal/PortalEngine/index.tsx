@@ -51,7 +51,7 @@ export default function PortalEngine({
     setPortalContainer(container);
 
     return () => {
-      // if (container && !persistOnUnmount) container.remove();
+      if (container && !persistOnUnmount) container.remove();
     };
   }, [id, actualMountNode, persistOnUnmount]);
 

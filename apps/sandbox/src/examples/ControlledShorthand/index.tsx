@@ -11,9 +11,9 @@ export default function ControlledShorthand() {
   return (
     <>
       <Modal
-        // id="controlled-shorthand"
+        id="controlled-shorthand"
         isOpen={isOpen}
-        title="Shorthand"
+        title="Controlled Shorthand"
         onClose={() => setIsOpen((oldState) => !oldState)}
         actions={[
           {
@@ -25,7 +25,7 @@ export default function ControlledShorthand() {
           },
         ]}
       >
-        I am the children
+        This is the children of controlled shorthand
       </Modal>
       <button type="button" onClick={handleToggleModal}>
         Open Controlled Shorthand

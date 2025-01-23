@@ -1,3 +1,5 @@
+import Composable from './examples/Composable';
+import ComposableWithTrigger from './examples/ComposableWithTrigger';
 import ControlledShorthand from './examples/ControlledShorthand';
 import UncontrolledShorthand from './examples/UncontrolledShorthand';
 import './styles.css';
@@ -10,8 +12,16 @@ export default function App() {
       <ControlledShorthand />
       <br />
       <br />
-      fasfas
+      Uncontrolled Shorthand:
       <UncontrolledShorthand />
+      <br />
+      <br />
+      Composable:
+      <Composable />
+      <br />
+      <br />
+      Composable with Trigger:
+      <ComposableWithTrigger />
     </div>
   );
 }

@@ -57,7 +57,7 @@ type ModalProps =
   | (ShorthandModalProps & { composable?: never })
   | ComposableModalProps;
 
-const Modal = forwardRef<PortalHandles, ModalProps>(
+const ModalComponent = forwardRef<PortalHandles, ModalProps>(
   ({ id = 'modal-container', ...props }, ref) => {
     // This abstraction is because we need to narrow down the type of the ModalProps.
     // It also helps with the readability of the code and the code isolation.
@@ -81,18 +81,18 @@ const Modal = forwardRef<PortalHandles, ModalProps>(
   }
 );
 
-Modal.displayName = 'Modal';
+ModalComponent.displayName = 'Modal';
 
-type ModalComponent = typeof Modal & {
+type ModalComponentType = typeof ModalComponent & {
   Header: typeof Header;
   Body: typeof Body;
   Actions: typeof Actions;
 };
 
-const ExtendedModal = Object.assign(Modal, {
+const Modal = Object.assign(ModalComponent, {
   Header,
   Body,
   Actions,
-}) as ModalComponent;
+}) as ModalComponentType;
 
-export default ExtendedModal;
+export default Modal;

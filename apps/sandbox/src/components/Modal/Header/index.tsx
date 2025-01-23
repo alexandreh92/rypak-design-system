@@ -33,3 +33,6 @@ export default function Header({ ...props }: ModalHeaderProps) {
     </Container>
   );
 }
+
+Header.Title = Title;
+Header.CloseButton = CloseButton;
