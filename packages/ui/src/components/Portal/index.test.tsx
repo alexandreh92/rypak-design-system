@@ -15,8 +15,22 @@ describe('Portal', () => {
     expect(screen.getByText(/Hi/i)).toBeInTheDocument();
   });
 
+  describe('when container is not passed', () => {
+    it('renders portal at documents.body', () => {
+      render(
+        <Portal>
+          <p id="portal-container">Hi</p>
+        </Portal>
+      );
+
+      const container = screen.getById('portal-container');
+
+      expect(container.parentElement).toBe(document.body);
+    });
+  });
+
   describe('when passing a custom container', () => {
-    it('enders children inside the custom container when passing a ref object', () => {
+    it('renders children inside the custom container when passing a ref object', () => {
       const CustomComponent = () => {
         const ref = useRef<HTMLDivElement>(null);
 
@@ -34,11 +48,12 @@ describe('Portal', () => {
 
       const customContainer = screen.getById('custom-container');
 
-      screen.debug(undefined, Infinity);
-
       expect(
         within(customContainer).getByText(/This is a test/i)
       ).toBeInTheDocument();
+      expect(screen.getByText(/This is a test/i).parentElement).toBe(
+        customContainer
+      );
     });
 
     it('renders children inside the custom container when passing a HTMLElement', () => {
@@ -61,6 +76,9 @@ describe('Portal', () => {
       expect(
         within(customContainer).getByText(/This is a test/i)
       ).toBeInTheDocument();
+      expect(screen.getByText(/This is a test/i).parentElement).toBe(
+        customContainer
+      );
     });
   });
 

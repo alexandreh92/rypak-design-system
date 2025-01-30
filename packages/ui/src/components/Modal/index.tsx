@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
 } from 'react';
+
 import { createNamedContext } from '../../utils/createNamedContext';
 import Portal from '../Portal';
 
@@ -71,7 +72,7 @@ const ModalRoot = forwardRef<ModalHandles, ModalProps>((props, ref) => {
 
   return (
     <ModalProvider open={open} portalRef={portalRef} toggle={toggle}>
-      {open && (
+      {Boolean(open) && (
         <Portal ref={portalRef}>
           <div>hi</div>
         </Portal>
