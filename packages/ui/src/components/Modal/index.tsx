@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
-import { Portal } from '../Portal';
-import type { PortalProps, PortalHandleProps } from '../Portal';
+import { Portal } from '../PortalOld';
+import type { PortalProps, PortalHandleProps } from '../PortalOld';
 
 interface ModalProps extends PortalProps {
   children: React.ReactNode;

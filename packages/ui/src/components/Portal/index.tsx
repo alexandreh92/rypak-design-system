@@ -1,72 +1,30 @@
-import {
-  cloneElement,
-  createElement,
-  forwardRef,
-  useCallback,
-  useImperativeHandle,
-  useState,
-} from 'react';
+import { forwardRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useUpdateEffect } from 'react-use';
-import type { HTMLProps, ReactElement } from 'react';
 
-interface PortalRootProps extends Omit<HTMLProps<HTMLDivElement>, 'ref'> {
-  children: React.ReactNode;
-  containerId: string;
-  mountNode?: HTMLElement;
+export interface PortalProps {
+  /**
+   * The container where the portal content should be rendered.
+   *
+   * - `Element`: A DOM element where the portal should be attached (e.g., a specific div).
+   * - `DocumentFragment`: A lightweight container that is not part of the DOM tree, useful for off-DOM operations.
+   * - `undefined` | `null`: Can be used to specify no container or dynamically define one.
+   */
+  container: Element | DocumentFragment | undefined | null;
 }
 
-const PortalRoot = ({
-  children,
-  containerId,
-  mountNode = document.body,
-}: PortalRootProps): React.ReactPortal => {
-  return createPortal(
-    createElement('div', { id: containerId }, children),
-    mountNode
-  );
-};
+const Portal = forwardRef<HTMLDivElement, PortalProps>(
+  ({ container, ...rest }, ref) => {
+    const [isMounted, setIsMounted] = useState(false);
 
-interface TriggerProps {
-  onClick: () => void;
-}
-
-export interface PortalProps extends PortalRootProps {
-  visible?: boolean;
-  defaultVisible?: boolean;
-  trigger?: ReactElement<TriggerProps>;
-}
-
-export interface PortalHandleProps {
-  toggle: () => void;
-}
-
-export const Portal = forwardRef<PortalHandleProps, PortalProps>(
-  ({ visible, children, trigger, ...rest }, ref) => {
-    const [isVisible, setIsVisible] = useState(visible);
-
-    const toggle = useCallback(() => {
-      setIsVisible((oldState) => !oldState);
+    useLayoutEffect(() => {
+      setIsMounted(true);
     }, []);
 
-    useUpdateEffect(() => {
-      setIsVisible(visible);
-    }, [visible]);
+    const actualMountNode = container || (isMounted && document.body);
 
-    useImperativeHandle(
-      ref,
-      () => ({
-        toggle,
-      }),
-      [toggle]
-    );
+    if (!actualMountNode) return null;
 
-    return (
-      <>
-        {isVisible && <PortalRoot {...rest}>{children}</PortalRoot>}
-        {trigger && cloneElement(trigger, { onClick: toggle })}
-      </>
-    );
+    return createPortal(<div {...rest} ref={ref} />, actualMountNode);
   }
 );
 
