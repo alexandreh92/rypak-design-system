@@ -1,5 +1,11 @@
 {
   "extends": "@rypak/typescript-config/react-library.json",
+  "compilerOptions": {
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "paths": {
+      "test-utils": ["./src/setup/tests/testUtils"]
+    }
+  },
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }

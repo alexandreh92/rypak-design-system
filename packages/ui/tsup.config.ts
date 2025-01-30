@@ -5,6 +5,14 @@ export default defineConfig((options) => ({
   format: ['cjs', 'esm'],
   dts: true,
   sourcemap: true,
-  external: ['react'],
+  external: [
+    'react',
+    'react-dom',
+    'vitest',
+    'eslint',
+    'jsdom',
+    '@testing-library/react',
+    '@testing-library/jest-dom',
+  ],
   ...options,
 }));

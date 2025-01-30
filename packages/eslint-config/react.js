@@ -32,11 +32,37 @@ module.exports = {
     },
   },
   ignorePatterns: ['node_modules/', 'dist/', '.eslintrc.js', '**/*.css'],
-  // add rules configurations here
   rules: {
     'import/no-default-export': 'off',
     'react/function-component-definition': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    'react/jsx-no-leaked-render': 'off',
+    // 'react/jsx-no-leaked-render': 'off',
+    // Enforce consistent filename case
+    'unicorn/filename-case': [
+      'error',
+      {
+        cases: {
+          camelCase: true,
+          pascalCase: true,
+        },
+      },
+    ],
+    // Enforce a specific order for import statements
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'always',
+        groups: [
+          'builtin',
+          'type',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+        ],
+        distinctGroup: false,
+      },
+    ],
   },
 };

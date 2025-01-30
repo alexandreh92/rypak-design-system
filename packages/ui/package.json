@@ -21,18 +21,24 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "lint": "eslint . --max-warnings 0",
+    "test": "vitest",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
     "@rypak/eslint-config": "workspace:*",
     "@rypak/typescript-config": "workspace:*",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@types/node": "^22.12.0",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
     "eslint": "^8.57.0",
+    "jsdom": "^26.0.0",
     "tsup": "^8.0.2",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "vitest": "^3.0.4"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-use": "^17.5.1"
