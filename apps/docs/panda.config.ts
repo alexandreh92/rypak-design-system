@@ -5,21 +5,15 @@ export default defineConfig({
   // Whether to use css reset
   preflight: true,
 
-  staticCss: {
-    themes: ['light'],
-  },
-
   // Where to look for your css declarations
   include: ['./src/**/*.{js,jsx,ts,tsx}'],
 
   // Files to exclude
   exclude: [],
 
+  importMap: '@rypak/ui/styled-system',
+
   presets: [defaultPreset],
-
-  clean: true,
-
-  outExtension: 'js',
 
   // The output directory for your css system
   outdir: 'styled-system',

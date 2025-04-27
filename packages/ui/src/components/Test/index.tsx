@@ -4,7 +4,7 @@ function App() {
   return (
     <div
       className={css({
-        fontSize: '12px',
+        fontSize: '14px',
         backgroundColor: 'red.200',
         fontWeight: 'semi-bold',
         color: 'grayscale.disabled',
