@@ -211,7 +211,7 @@ export const defaultPreset = definePreset({
             textTransform: 'None',
           },
         },
-        'paragrah-lg': {
+        'paragraph-lg': {
           description: 'Paragraph - Large',
           value: {
             fontFamily: '{fonts.default}',
@@ -223,7 +223,7 @@ export const defaultPreset = definePreset({
             textTransform: 'None',
           },
         },
-        'paragrah-md': {
+        'paragraph-md': {
           description: 'Paragraph - Medium',
           value: {
             fontFamily: '{fonts.default}',
@@ -235,7 +235,7 @@ export const defaultPreset = definePreset({
             textTransform: 'None',
           },
         },
-        'paragrah-sm': {
+        'paragraph-sm': {
           description: 'Paragraph - Small',
           value: {
             fontFamily: '{fonts.default}',
@@ -247,7 +247,7 @@ export const defaultPreset = definePreset({
             textTransform: 'None',
           },
         },
-        'paragrah-xs': {
+        'paragraph-xs': {
           description: 'Paragraph - Extra Small',
           value: {
             fontFamily: '{fonts.default}',
