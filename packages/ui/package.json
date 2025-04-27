@@ -26,13 +26,14 @@
   },
   "devDependencies": {
     "@rypak/eslint-config": "workspace:*",
+    "@rypak/prettier-config": "workspace:*",
     "@rypak/typescript-config": "workspace:*",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^22.12.0",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
-    "eslint": "^8.57.0",
     "jsdom": "^26.0.0",
     "tsup": "^8.0.2",
     "typescript": "5.5.4",
@@ -45,5 +46,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "uuid": "^11.1.0"
   }
 }

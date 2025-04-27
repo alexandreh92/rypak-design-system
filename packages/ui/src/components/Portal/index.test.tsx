@@ -1,105 +1,101 @@
-import { useRef } from 'react';
-
-import { render, screen, within } from 'test-utils';
+import { render, screen, userEvent } from 'test-utils';
 
 import Portal from '.';
 
 describe('Portal', () => {
-  it('renders a portaled component inside the container', () => {
-    render(
-      <Portal>
-        <p>Hi</p>
-      </Portal>
-    );
-
-    expect(screen.getByText(/Hi/i)).toBeInTheDocument();
-  });
-
-  describe('when container is not passed', () => {
-    it('renders portal at documents.body', () => {
+  describe('when isOpen is true', () => {
+    it('renders portal root', async () => {
       render(
-        <Portal>
-          <p id="portal-container">Hi</p>
-        </Portal>
+        <Portal isOpen id="portal-container">
+          this is a test
+        </Portal>,
       );
 
-      const container = screen.getById('portal-container');
-
-      expect(container.parentElement).toBe(document.body);
-    });
-  });
-
-  describe('when passing a custom container', () => {
-    it('renders children inside the custom container when passing a ref object', () => {
-      const CustomComponent = () => {
-        const ref = useRef<HTMLDivElement>(null);
-
-        return (
-          <>
-            <div id="custom-container" ref={ref} />
-            <Portal container={ref}>
-              <p>This is a test</p>
-            </Portal>
-          </>
-        );
-      };
-
-      render(<CustomComponent />);
-
-      const customContainer = screen.getById('custom-container');
-
-      expect(
-        within(customContainer).getByText(/This is a test/i)
-      ).toBeInTheDocument();
-      expect(screen.getByText(/This is a test/i).parentElement).toBe(
-        customContainer
-      );
+      expect(screen.getById('portal-container')).toBeInTheDocument();
     });
 
-    it('renders children inside the custom container when passing a HTMLElement', () => {
-      const existingDomElement = document.createElement('div');
-      existingDomElement.id = 'custom-container';
-      document.body.appendChild(existingDomElement);
-
-      const CustomComponent = () => {
-        return (
-          <Portal container={existingDomElement}>
-            <p>This is a test</p>
-          </Portal>
-        );
-      };
-
-      render(<CustomComponent />);
-
-      const customContainer = screen.getById('custom-container');
-
-      expect(
-        within(customContainer).getByText(/This is a test/i)
-      ).toBeInTheDocument();
-      expect(screen.getByText(/This is a test/i).parentElement).toBe(
-        customContainer
-      );
-    });
-  });
-
-  describe('when rendering multiple portals', () => {
-    it('renders multiple portals without affecting each other', () => {
+    it('renders portal root children', async () => {
       render(
-        <>
-          <Portal>
-            <div id="first-portal">first</div>
-          </Portal>
-          <Portal>
-            <p id="second-portal">second</p>
-          </Portal>
-        </>
+        <Portal isOpen id="portal-container">
+          this is a test
+        </Portal>,
       );
 
-      const firstPortal = screen.getById('first-portal');
-      const secondPortal = screen.getById('second-portal');
+      expect(screen.getByText(/this is a test/i)).toBeInTheDocument();
+    });
+  });
 
-      expect(within(firstPortal).getByText(/first/i)).toBeInTheDocument();
-      expect(within(secondPortal).getByText(/second/i)).toBeInTheDocument();
+  describe('when isOpen is false', () => {
+    it('does not render portal root', async () => {
+      render(<Portal id="portal-container">this is a test</Portal>);
+
+      expect(screen.queryByText(/this is a test/i)).not.toBeInTheDocument();
+    });
+  });
+
+  describe('when trigger is present', () => {
+    it('renders trigger', async () => {
+      render(
+        <Portal
+          trigger={<button type="button">trigger</button>}
+          id="portal-container"
+        >
+          this is a test
+        </Portal>,
+      );
+
+      expect(screen.getByText(/trigger/i)).toBeInTheDocument();
+    });
+
+    describe('when PortalRoot is not visible', () => {
+      it('calls onOpen when trigger is clicked', async () => {
+        const onOpen = vi.fn<() => void>();
+
+        const user = userEvent.setup();
+        render(
+          <Portal
+            trigger={<button type="button">trigger</button>}
+            id="portal-container"
+            onOpen={onOpen}
+          >
+            this is a test
+          </Portal>,
+        );
+
+        await user.click(screen.getByText(/trigger/i));
+
+        expect(onOpen).toHaveBeenCalledWith(
+          expect.objectContaining({
+            type: 'click',
+          }),
+        );
+      });
+    });
+
+    describe('when PortalRoot is visible', () => {
+      it('calls onClose when trigger is clicked', async () => {
+        const onClose = vi.fn<() => void>();
+
+        const user = userEvent.setup();
+        render(
+          <Portal
+            trigger={<button type="button">trigger</button>}
+            id="portal-container"
+            onClose={onClose}
+            isOpen
+          >
+            this is a test
+          </Portal>,
+        );
+
+        await user.click(screen.getByText(/trigger/i));
+
+        expect(onClose).toHaveBeenCalledWith(
+          expect.objectContaining({
+            type: 'click',
+          }),
+        );
+      });
     });
   });
 });

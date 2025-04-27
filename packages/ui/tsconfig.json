@@ -6,6 +6,6 @@
       "test-utils": ["./src/setup/tests/testUtils"]
     }
   },
-  "include": ["."],
+  "include": [".", ".prettierrc.js"],
   "exclude": ["dist", "build", "node_modules"]
 }

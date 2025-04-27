@@ -1,0 +1,12 @@
+{
+  "name": "@rypak/prettier-config",
+  "version": "0.0.0",
+  "main": "prettier.config.js",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "prettier": "^3.2.5"
+  }
+}
