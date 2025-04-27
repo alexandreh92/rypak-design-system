@@ -23,7 +23,6 @@
     "@storybook/react": "^8.2.6",
     "@storybook/react-vite": "^8.2.6",
     "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.57.0",
     "serve": "^14.2.1",
     "storybook": "^8.2.6",
     "@rypak/typescript-config": "workspace:*",
