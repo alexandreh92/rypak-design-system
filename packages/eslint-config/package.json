@@ -2,16 +2,35 @@
   "name": "@rypak/eslint-config",
   "version": "0.0.0",
   "private": true,
-  "files": [
-    "library.js",
-    "react.js",
-    "storybook.js"
-  ],
+  "exports": {
+    "./react": {
+      "import": "./react.mjs",
+      "require": "./react.mjs"
+    },
+    "./storybook": {
+      "import": "./storybook.js",
+      "require": "./storybook.js"
+    },
+    "./library": {
+      "import": "./library.js",
+      "require": "./library.js"
+    }
+  },
+  "type": "module",
+  "peerDependencies": {},
   "devDependencies": {
-    "@vercel/style-guide": "^5.2.0",
-    "eslint-config-turbo": "^2.0.0",
+    "@eslint/js": "^9.25.1",
+    "@vitest/eslint-plugin": "^1.1.43",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-mdx": "^3.1.5",
     "eslint-plugin-only-warn": "^1.1.0",
-    "eslint-plugin-storybook": "^0.8.0"
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-storybook": "^0.8.0",
+    "typescript-eslint": "^8.31.0"
   }
 }

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@rypak/ui/button';
+import { Button } from '@rypak/ui';
 
 const meta: Meta<typeof Button> = {
   component: Button,

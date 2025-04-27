@@ -5,6 +5,7 @@ export default defineConfig((options) => ({
   format: ['cjs', 'esm'],
   dts: true,
   sourcemap: true,
-  external: ['react'],
+  external: [/node_modules/],
+  ignore: ['**/*.test.tsx', '**/*.spec.tsx', 'src/setup/**'],
   ...options,
 }));
