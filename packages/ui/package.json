@@ -32,6 +32,7 @@
   "devDependencies": {
     "@pandacss/dev": "^0.53.5",
     "@rypak/eslint-config": "workspace:*",
+    "@rypak/panda-preset": "workspace:*",
     "@rypak/prettier-config": "workspace:*",
     "@rypak/typescript-config": "workspace:*",
     "@testing-library/jest-dom": "^6.6.3",

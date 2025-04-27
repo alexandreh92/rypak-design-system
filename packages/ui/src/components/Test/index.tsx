@@ -4,9 +4,10 @@ function App() {
   return (
     <div
       className={css({
-        fontSize: '2xl',
-        backgroundColor: 'blue.50',
-        fontWeight: 'bold',
+        fontSize: '12px',
+        backgroundColor: 'red.200',
+        fontWeight: 'semi-bold',
+        color: 'grayscale.disabled',
       })}
     >
       Hello 🐼!
