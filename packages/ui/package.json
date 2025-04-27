@@ -3,29 +3,36 @@
   "version": "0.0.0",
   "sideEffects": false,
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
+        "types": "./dist/src/index.d.mts",
+        "default": "./dist/src/index.mjs"
       },
       "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
+        "types": "./dist/src/index.d.ts",
+        "default": "./dist/src/index.js"
       }
+    },
+    "./styles.css": {
+      "import": "./dist/styled-system/styles.css",
+      "require": "./dist/styled-system/styles.css"
     }
   },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "prepare": "panda codegen",
     "lint": "eslint . --max-warnings 0",
     "test": "vitest",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.53.5",
     "@rypak/eslint-config": "workspace:*",
+    "@rypak/panda-preset": "workspace:*",
     "@rypak/prettier-config": "workspace:*",
     "@rypak/typescript-config": "workspace:*",
     "@testing-library/jest-dom": "^6.6.3",

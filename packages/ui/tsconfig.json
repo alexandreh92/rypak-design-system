@@ -3,9 +3,11 @@
   "compilerOptions": {
     "types": ["vitest/globals", "@testing-library/jest-dom"],
     "paths": {
+      "~/*": ["./src/*"],
+      "styled-system/*": ["./styled-system/*"],
       "test-utils": ["./src/setup/tests/testUtils"]
     }
   },
-  "include": [".", ".prettierrc.js"],
+  "include": [".", "styled-system"],
   "exclude": ["dist", "build", "node_modules"]
 }
