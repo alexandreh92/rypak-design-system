@@ -16,9 +16,39 @@
         "default": "./dist/src/index.js"
       }
     },
-    "./styles.css": {
+    "./styled-system/styles.css": {
       "import": "./dist/styled-system/styles.css",
       "require": "./dist/styled-system/styles.css"
+    },
+    "./styled-system/css": {
+      "types": "./dist/styled-system/css/index.d.ts",
+      "require": "./dist/styled-system/css/index.js",
+      "import": "./dist/styled-system/css/index.mjs"
+    },
+    "./styled-system/tokens": {
+      "types": "./dist/styled-system/tokens/index.d.ts",
+      "require": "./dist/styled-system/tokens/index.js",
+      "import": "./dist/styled-system/tokens/index.mjs"
+    },
+    "./styled-system/types": {
+      "types": "./dist/styled-system/types/index.d.ts",
+      "require": "./dist/styled-system/types/index.js",
+      "import": "./dist/styled-system/types/index.mjs"
+    },
+    "./styled-system/patterns": {
+      "types": "./dist/styled-system/patterns/index.d.ts",
+      "require": "./dist/styled-system/patterns/index.js",
+      "import": "./dist/styled-system/patterns/index.mjs"
+    },
+    "./styled-system/jsx": {
+      "types": "./dist/styled-system/jsx/index.d.ts",
+      "require": "./dist/styled-system/jsx/index.js",
+      "import": "./dist/styled-system/jsx/index.mjs"
+    },
+    "./styled-system/themes": {
+      "types": "./dist/styled-system/themes/index.d.ts",
+      "require": "./dist/styled-system/themes/index.js",
+      "import": "./dist/styled-system/themes/index.mjs"
     }
   },
   "scripts": {
@@ -41,6 +71,7 @@
     "@types/node": "^22.12.0",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
+    "esbuild-copy-files-plugin": "^1.2.1",
     "jsdom": "^26.0.0",
     "tsup": "^8.0.2",
     "typescript": "5.5.4",

@@ -8,7 +8,8 @@
     "build": "storybook build --docs",
     "preview-storybook": "serve storybook-static",
     "clean": "rm -rf .turbo && rm -rf node_modules",
-    "lint": "eslint ./stories/*.stories.tsx --max-warnings 0"
+    "lint": "eslint ./stories/*.stories.tsx --max-warnings 0",
+    "prepare": "panda codegen"
   },
   "dependencies": {
     "@rypak/ui": "workspace:*",
@@ -16,7 +17,9 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.53.5",
     "@rypak/eslint-config": "workspace:*",
+    "@rypak/typescript-config": "workspace:*",
     "@storybook/addon-actions": "^8.2.6",
     "@storybook/addon-essentials": "^8.2.6",
     "@storybook/addon-links": "^8.2.6",
@@ -25,7 +28,6 @@
     "@vitejs/plugin-react": "^4.2.1",
     "serve": "^14.2.1",
     "storybook": "^8.2.6",
-    "@rypak/typescript-config": "workspace:*",
     "typescript": "5.5.4",
     "vite": "^5.1.4"
   }
