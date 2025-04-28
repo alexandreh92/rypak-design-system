@@ -1,4 +1,5 @@
 import { defineConfig } from '@pandacss/dev';
+import pandaPreset from '@pandacss/preset-panda';
 import { defaultPreset } from '@rypak/panda-preset';
 
 export default defineConfig({
@@ -15,11 +16,13 @@ export default defineConfig({
   // Files to exclude
   exclude: [],
 
-  presets: [defaultPreset],
+  presets: [pandaPreset, defaultPreset],
 
   clean: true,
 
   outExtension: 'js',
+
+  jsxFramework: 'react',
 
   // The output directory for your css system
   outdir: 'styled-system',

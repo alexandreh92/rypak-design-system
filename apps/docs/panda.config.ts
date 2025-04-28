@@ -1,20 +1,20 @@
 import { defineConfig } from '@pandacss/dev';
 import { defaultPreset } from '@rypak/panda-preset';
+import pandaPreset from '@pandacss/preset-panda';
 
 export default defineConfig({
-  // Whether to use css reset
-  preflight: true,
-
-  // Where to look for your css declarations
-  include: ['./src/**/*.{js,jsx,ts,tsx}'],
-
-  // Files to exclude
+  presets: [pandaPreset, defaultPreset],
+  jsxFramework: 'react',
+  include: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    './src/stories/**/*.stories.{js,jsx,ts,tsx}',
+  ],
   exclude: [],
-
-  importMap: '@rypak/ui/styled-system',
-
-  presets: [defaultPreset],
-
-  // The output directory for your css system
+  importMap: {
+    css: '@rypak/ui/styled-system/css',
+    recipes: '@rypak/ui/styled-system/recipes',
+    patterns: '@rypak/ui/styled-system/patterns',
+    jsx: '@rypak/ui/styled-system/jsx',
+  },
   outdir: 'styled-system',
 });

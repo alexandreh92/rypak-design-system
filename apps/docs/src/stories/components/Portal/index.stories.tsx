@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Test } from '@rypak/ui';
 import { css } from '@rypak/ui/styled-system/css';
+// import { css } from '../../../../styled-system/css';
+// import { styled } from '../../../../styled-system/jsx';
 
 const meta: Meta<typeof Test> = {
   component: Test,
@@ -16,6 +18,8 @@ export default meta;
 
 type Story = StoryObj<typeof Test>;
 
+import { Button, StyledTest, ButtonRestyle, RypakButton } from './fonfon';
+
 /*
  *👇 Render functions are a framework specific feature to allow you control on how the component renders.
  * See https://storybook.js.org/docs/react/api/csf
@@ -23,9 +27,15 @@ type Story = StoryObj<typeof Test>;
  */
 export const Primary: Story = {
   render: (props) => (
-    <div className={css({ color: 'grayscale.disabled' })}>
+    <div className={css({ color: 'grayscale.disabled', margin: '20px' })}>
       another testa
-      <Test />
+      <Test padding="20px" />
+      <StyledTest />
+      <Button variant="primary" margin="20px" color="red.200">
+        fonfon
+      </Button>
+      <ButtonRestyle backgroundColor="yellow.100">fiooon</ButtonRestyle>
+      <RypakButton variant="primary">lflflfl</RypakButton>
     </div>
   ),
   name: 'Button',

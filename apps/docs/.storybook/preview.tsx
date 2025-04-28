@@ -1,7 +1,7 @@
 import { Preview } from '@storybook/react';
 
 import '../src/index.css';
-
+import '../styled-system/styles.css';
 const preview: Preview = {
   decorators: [],
   parameters: {},
