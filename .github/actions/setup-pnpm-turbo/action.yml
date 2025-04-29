@@ -1,28 +1,22 @@
-name: Setup pnpm and Turbo caches
+name: Setup pnpm and Turbo cache
 description: Caches pnpm store and Turbo cache
 runs:
   using: 'composite'
   steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 10
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version-file: '.tool-versions'
-
-    - name: Install pnpm
-      run: npm install -g pnpm
-      shell: bash
+        cache: 'pnpm'
 
     - name: Install pnpm packages
       run: pnpm install --ignore-scripts
       shell: bash
-
-    - name: Cache pnpm store
-      uses: actions/cache@v3
-      with:
-        path: ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-store-
 
     - name: Cache Turbo
       uses: actions/cache@v3
