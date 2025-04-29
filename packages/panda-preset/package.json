@@ -14,12 +14,17 @@
     }
   },
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "lint": "eslint './src/**/*.ts'  --max-warnings 0",
+    "lint:ci": "eslint './src/**/*.ts' --format junit -o reports/lint/js-lint-results.xml --max-warnings 0",
+    "clean": "rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.53.5",
     "@pandacss/types": "^0.53.5",
+    "@rypak/prettier-config": "workspace:*",
     "@rypak/typescript-config": "workspace:*",
-    "tsup": "^8.0.2"
+    "tsup": "^8.0.2",
+    "turbo": "^2.3.3"
   }
 }

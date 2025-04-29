@@ -1,9 +1,10 @@
-import { useMemo, createContext, useContext as ReactUseContext } from 'react';
 import type { ReactNode } from 'react';
+
+import { useMemo, createContext, useContext as ReactUseContext } from 'react';
 
 export const createNamedContext = <T extends object | null | undefined>(
   name: string,
-  deafultContext?: T | null
+  deafultContext?: T | null,
 ) => {
   const Context = createContext<T | null | undefined>(deafultContext);
 

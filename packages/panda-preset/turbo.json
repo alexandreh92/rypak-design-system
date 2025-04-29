@@ -1,0 +1,22 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": [],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "index.ts",
+        "dark-theme.ts",
+        "light-theme.ts"
+      ],
+      "outputs": ["dist/**"],
+      "persistent": false,
+      "cache": true
+    },
+    "lint": {
+      "inputs": ["$TURBO_DEFAULT$", "src/**", "node_modules"],
+      "cache": true
+    }
+  }
+}

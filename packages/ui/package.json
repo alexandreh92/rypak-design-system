@@ -52,12 +52,14 @@
     }
   },
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "prebuild": "panda codegen",
+    "build": "panda build && tsup",
     "prepare": "panda codegen",
-    "lint": "eslint . --max-warnings 0",
+    "lint": "eslint './src/**/*.{ts,tsx}' --max-warnings 0",
+    "lint:ci": "eslint './src/**/*.{ts,tsx}' --format junit -o reports/lint/js-lint-results.xml --max-warnings 0",
     "test": "vitest",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "test:ci": "vitest --run --reporter=default --silent --reporter=junit --outputFile.junit ./reports/junit/report.xml",
+    "clean": "rm -rf node_modules && rm -rf dist && rm -rf styled-system"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.53.5",
@@ -75,7 +77,8 @@
     "jsdom": "^26.0.0",
     "tsup": "^8.0.2",
     "typescript": "5.5.4",
-    "vitest": "^3.0.4"
+    "vitest": "^3.0.4",
+    "turbo": "^2.3.3"
   },
   "peerDependencies": {
     "react": "^18.2.0",

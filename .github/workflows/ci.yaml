@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm, pnpm cache and turbo cache
+        uses: ./.github/actions/setup-pnpm-turbo
+        with:
+          turbo-cache-key-suffix: lint
+
+      - name: Run linter
+        run: pnpm lint:ci
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm, pnpm cache and turbo cache
+        uses: ./.github/actions/setup-pnpm-turbo
+        with:
+          turbo-cache-key-suffix: test
+
+      - name: Run Tests
+        run: pnpm test:ci
+
+  build:
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm, pnpm cache and turbo cache
+        uses: ./.github/actions/setup-pnpm-turbo
+        with:
+          turbo-cache-key-suffix: build
+
+      - name: Run Turbo build
+        run: pnpm build

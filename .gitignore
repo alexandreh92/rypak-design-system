@@ -12,6 +12,9 @@ server/dist
 public/dist
 storybook-static/
 
+# Lint and Test reports
+reports
+
 ## Panda
 styled-system
 styled-system-studio

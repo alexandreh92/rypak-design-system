@@ -1,6 +1,6 @@
 // import { styled } from '../../../../styled-system/jsx';
-import { styled as rypak } from '@rypak/ui/styled-system/jsx';
 import { Test } from '@rypak/ui';
+import { styled as rypak } from '@rypak/ui/styled-system/jsx';
 
 export const Button = rypak('button', {
   base: {
@@ -21,6 +21,7 @@ export const Button = rypak('button', {
     },
   },
 });
+Button.displayName = 'Button';
 
 export const RypakButton = rypak('button', {
   base: {
@@ -41,6 +42,7 @@ export const RypakButton = rypak('button', {
     },
   },
 });
+RypakButton.displayName = 'RypakButton';
 
 export const ButtonRestyle = rypak(Button, {
   base: {
@@ -52,3 +54,4 @@ export const ButtonRestyle = rypak(Button, {
 export const StyledTest = rypak(Test, {
   base: { margin: '5px', backgroundColor: 'green' },
 });
+ButtonRestyle.displayName = 'ButtonRestyle';

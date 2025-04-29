@@ -4,12 +4,14 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "storybook dev -p 6006",
+    "dev": "storybook dev -p 6006 --no-open",
+    "prebuild": "panda codegen",
     "build": "storybook build --docs",
     "preview-storybook": "serve storybook-static",
-    "clean": "rm -rf .turbo && rm -rf node_modules",
-    "lint": "eslint ./stories/*.stories.tsx --max-warnings 0",
-    "prepare": "panda codegen"
+    "lint": "eslint './src/**/*.{ts,tsx,mdx}'  --max-warnings 0",
+    "lint:ci": "eslint './src/**/*.{ts,tsx,mdx}' --format junit -o reports/lint/js-lint-results.xml --max-warnings 0",
+    "prepare": "panda codegen",
+    "clean": "rm -rf node_modules && rm -rf storybook-static && rm -rf styled-system"
   },
   "dependencies": {
     "@rypak/ui": "workspace:*",
@@ -19,15 +21,19 @@
   "devDependencies": {
     "@pandacss/dev": "^0.53.5",
     "@rypak/eslint-config": "workspace:*",
+    "@rypak/panda-preset": "workspace:*",
+    "@rypak/prettier-config": "workspace:*",
     "@rypak/typescript-config": "workspace:*",
     "@storybook/addon-actions": "^8.2.6",
     "@storybook/addon-essentials": "^8.2.6",
     "@storybook/addon-links": "^8.2.6",
+    "@storybook/blocks": "^8.2.6",
     "@storybook/react": "^8.2.6",
     "@storybook/react-vite": "^8.2.6",
     "@vitejs/plugin-react": "^4.2.1",
     "serve": "^14.2.1",
     "storybook": "^8.2.6",
+    "turbo": "^2.3.3",
     "typescript": "5.5.4",
     "vite": "^5.1.4"
   }

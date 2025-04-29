@@ -10,7 +10,6 @@ import prettier from 'eslint-plugin-prettier/recommended';
 import reactHooks from 'eslint-plugin-react-hooks';
 
 export default defineConfig([
-  {},
   {
     languageOptions: {
       globals: {
