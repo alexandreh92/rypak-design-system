@@ -16,6 +16,7 @@
   "scripts": {
     "build": "tsup",
     "lint": "eslint './src/**/*.ts'  --max-warnings 0",
+    "lint:ci": "eslint './src/**/*.ts' --format junit -o reports/lint/js-lint-results.xml --max-warnings 0",
     "clean": "rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {

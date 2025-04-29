@@ -3,9 +3,17 @@
   "tasks": {
     "build": {},
     "lint": {},
+    "lint:ci": {
+      "outputs": ["reports/lint/js-lint-results.xml"],
+      "cache": true
+    },
     "dev": {},
     "test": {},
     "clean": {},
-    "test:ci": {}
+    "test:ci": {
+      "inputs": [],
+      "outputs": ["reports/junit/report.xml"],
+      "cache": true
+    }
   }
 }
