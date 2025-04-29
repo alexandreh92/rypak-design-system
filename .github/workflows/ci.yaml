@@ -15,9 +15,6 @@ jobs:
       - name: Setup pnpm, pnpm cache and turbo cache
         uses: ./.github/actions/setup-pnpm-turbo
 
-      - name: Install dependencies
-        run: pnpm install
-
       - name: Run linter
         run: pnpm lint
 
@@ -30,9 +27,6 @@ jobs:
 
       - name: Setup pnpm, pnpm cache and turbo cache
         uses: ./.github/actions/setup-pnpm-turbo
-
-      - name: Install dependencies
-        run: pnpm install
 
       - name: Run Turbo build
         run: pnpm build

@@ -12,6 +12,10 @@ runs:
       run: npm install -g pnpm
       shell: bash
 
+    - name: Install pnpm packages
+      run: pnpm install --ignore-scripts
+      shell: bash
+
     - name: Cache pnpm store
       uses: actions/cache@v3
       with:
