@@ -2,9 +2,10 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "build:packages": "pnpm turbo build --filter=./packages/* --output-logs=errors-only",
+    "dev": "pnpm build:packages && turbo watch dev",
     "test": "vitest",
-    "lint": "turbo run lint",
+    "lint": "turbo run lint --continue",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",

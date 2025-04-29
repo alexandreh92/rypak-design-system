@@ -1,5 +1,4 @@
 import { defineThemeContract } from '@pandacss/dev';
-import * as types from '@pandacss/types';
 
 export const defineTheme = defineThemeContract({
   semanticTokens: {

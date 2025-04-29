@@ -1,4 +1,5 @@
 import { definePreset } from '@pandacss/dev';
+
 import { darkTheme } from './dark-theme';
 
 export const defaultPreset = definePreset({

@@ -1,3 +1,4 @@
+/* eslint-disable import/export */
 import type { RenderOptions, Screen } from '@testing-library/react';
 import type { ReactElement } from 'react';
 
