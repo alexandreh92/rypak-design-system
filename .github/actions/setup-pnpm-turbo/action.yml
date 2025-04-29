@@ -20,6 +20,6 @@ runs:
       uses: actions/cache@v3
       with:
         path: .turbo
-        key: ${{ runner.os }}-turbo-${{ hashFiles('**/pnpm-lock.yaml') }}
+        key: ${{ runner.os }}-turbo-${{ hashFiles('**/pnpm-lock.yaml', '**/dist/**/*', '**/storybook-static/**/*') }}
         restore-keys: |
           ${{ runner.os }}-turbo-
