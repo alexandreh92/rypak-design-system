@@ -57,7 +57,7 @@
     "prepare": "panda codegen",
     "lint": "eslint './src/**/*.{ts,tsx}'  --max-warnings 0",
     "test": "vitest",
-    "test:ci": "vitest --run",
+    "test:ci": "vitest --run --reporter=default --reporter=junit --outputFile.junit ./reports/junit/report.xml",
     "clean": "rm -rf node_modules && rm -rf dist && rm -rf styled-system"
   },
   "devDependencies": {

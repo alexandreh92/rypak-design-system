@@ -19,7 +19,7 @@
     },
     "test:ci": {
       "inputs": [],
-      "outputs": [],
+      "outputs": ["reports/junit/report.xml"],
       "cache": true
     }
   }
