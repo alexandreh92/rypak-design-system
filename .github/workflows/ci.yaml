@@ -17,6 +17,8 @@ jobs:
 
       - name: Setup pnpm, pnpm cache and turbo cache
         uses: ./.github/actions/setup-pnpm-turbo
+        with:
+          turbo-cache-key-suffix: lint
 
       - name: Run linter
         run: pnpm lint
@@ -30,6 +32,8 @@ jobs:
 
       - name: Setup pnpm, pnpm cache and turbo cache
         uses: ./.github/actions/setup-pnpm-turbo
+        with:
+          turbo-cache-key-suffix: test
 
       - name: Run Tests
         run: pnpm test
@@ -43,6 +47,8 @@ jobs:
 
       - name: Setup pnpm, pnpm cache and turbo cache
         uses: ./.github/actions/setup-pnpm-turbo
+        with:
+          turbo-cache-key-suffix: build
 
       - name: Run Turbo build
         run: pnpm build
