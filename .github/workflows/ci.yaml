@@ -21,7 +21,7 @@ jobs:
           turbo-cache-key-suffix: lint
 
       - name: Run linter
-        run: pnpm lint
+        run: pnpm lint:ci
 
   test:
     runs-on: ubuntu-latest
