@@ -3,6 +3,14 @@ description: Caches pnpm store and Turbo cache
 runs:
   using: 'composite'
   steps:
+    - name: Cache turbo build setup
+      uses: actions/cache@v4
+      with:
+        path: .turbo
+        key: ${{ runner.os }}-turbo-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-turbo-
+
     - name: Install pnpm
       uses: pnpm/action-setup@v4
 
@@ -15,11 +23,3 @@ runs:
     - name: Install pnpm packages
       run: pnpm install --ignore-scripts
       shell: bash
-
-    - name: Cache Turbo
-      uses: actions/cache@v3
-      with:
-        path: .turbo
-        key: ${{ runner.os }}-turbo-${{ hashFiles('**/pnpm-lock.yaml', '**/dist/**/*', '**/storybook-static/**/*') }}
-        restore-keys: |
-          ${{ runner.os }}-turbo-
