@@ -25,8 +25,6 @@ npx create-turbo@latest -e design-system
 
 ### Useful Commands
 
-doink
-
 - `pnpm build` - Build all packages, including the Storybook site
 - `pnpm dev` - Run all packages locally and preview with Storybook
 - `pnpm lint` - Lint all packages
