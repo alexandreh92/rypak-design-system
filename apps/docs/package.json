@@ -9,7 +9,8 @@
     "build": "storybook build --docs",
     "preview-storybook": "serve storybook-static",
     "lint": "eslint './src/**/*.{ts,tsx,mdx}'  --max-warnings 0",
-    "prepare": "panda codegen"
+    "prepare": "panda codegen",
+    "clean": "rm -rf node_modules && rm -rf storybook-static && rm -rf styled-system"
   },
   "dependencies": {
     "@rypak/ui": "workspace:*",

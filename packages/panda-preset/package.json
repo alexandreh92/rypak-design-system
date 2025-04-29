@@ -15,7 +15,8 @@
   },
   "scripts": {
     "build": "tsup",
-    "lint": "eslint './src/**/*.ts'  --max-warnings 0"
+    "lint": "eslint './src/**/*.ts'  --max-warnings 0",
+    "clean": "rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.53.5",

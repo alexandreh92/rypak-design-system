@@ -4,7 +4,7 @@
     "build": "turbo run build",
     "build:packages": "pnpm turbo build --filter=./packages/* --output-logs=errors-only",
     "dev": "pnpm build:packages && turbo watch dev",
-    "test": "vitest",
+    "test": "turbo run test --continue",
     "lint": "turbo run lint --continue",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",

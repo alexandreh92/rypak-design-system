@@ -4,6 +4,8 @@
     "build": {},
     "lint": {},
     "dev": {},
-    "clean": {}
+    "test": {},
+    "clean": {},
+    "test:ci": {}
   }
 }

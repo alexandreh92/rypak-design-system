@@ -18,6 +18,18 @@ jobs:
       - name: Run linter
         run: pnpm lint
 
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm, pnpm cache and turbo cache
+        uses: ./.github/actions/setup-pnpm-turbo
+
+      - name: Run Tests
+        run: pnpm test
+
   build:
     runs-on: ubuntu-latest
     needs: lint

@@ -57,7 +57,8 @@
     "prepare": "panda codegen",
     "lint": "eslint './src/**/*.{ts,tsx}'  --max-warnings 0",
     "test": "vitest",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "test:ci": "vitest --run",
+    "clean": "rm -rf node_modules && rm -rf dist && rm -rf styled-system"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.53.5",

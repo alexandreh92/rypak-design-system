@@ -12,6 +12,15 @@
     "lint": {
       "inputs": ["$TURBO_DEFAULT$", "src/**", "node_modules"],
       "cache": true
+    },
+    "test": {
+      "inputs": ["$TURBO_DEFAULT$", "src/**", "node_modules"],
+      "cache": false
+    },
+    "test:ci": {
+      "inputs": [],
+      "outputs": [],
+      "cache": true
     }
   }
 }
