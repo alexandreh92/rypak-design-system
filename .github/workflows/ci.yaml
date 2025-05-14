@@ -32,7 +32,7 @@ jobs:
         uses: ./.github/actions/setup-pnpm-turbo
 
       - name: Run linter
-        run: pnpm lint:ci
+        run: pnpm lint
 
   test:
     runs-on: ubuntu-latest
