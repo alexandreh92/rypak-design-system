@@ -60,12 +60,13 @@
     }
   },
   "scripts": {
+    "prepare": "turbo run @rypak/panda-preset#build && panda codegen",
     "prebuild": "panda codegen",
     "build": "panda build && tsup",
     "lint": "eslint './src/**/*.{ts,tsx}' --max-warnings 0",
     "lint:ci": "eslint './src/**/*.{ts,tsx}' --format junit -o reports/lint/js-lint-results.xml --max-warnings 0",
     "test": "vitest",
-    "test:ci": "vitest --run --reporter=default --silent --reporter=junit --outputFile.junit ./reports/junit/report.xml",
+    "test:ci": "vitest --run --reporter=default --reporter=junit --outputFile.junit ./reports/junit/report.xml",
     "clean": "rm -rf node_modules && rm -rf dist && rm -rf styled-system"
   },
   "devDependencies": {

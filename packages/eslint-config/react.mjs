@@ -51,6 +51,26 @@ export default defineConfig([
       'react/react-in-jsx-scope': 'off',
       'import/no-empty-named-blocks': 'error',
       'import/named': 'error',
+      'import/order': [
+        'error',
+        {
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+          'newlines-between': 'always',
+          groups: [
+            'builtin',
+            'type',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+          ],
+          distinctGroup: false,
+        },
+      ],
       'import/no-extraneous-dependencies': [
         'error',
         {
@@ -74,27 +94,6 @@ export default defineConfig([
     rules: {
       'prettier/prettier': 'error',
       'no-trailing-spaces': ['error'],
-      'import/no-unresolved': 'off',
-      'import/order': [
-        'error',
-        {
-          alphabetize: {
-            order: 'asc',
-            caseInsensitive: true,
-          },
-          'newlines-between': 'always',
-          groups: [
-            'builtin',
-            'type',
-            'external',
-            'internal',
-            'parent',
-            'sibling',
-            'index',
-          ],
-          distinctGroup: false,
-        },
-      ],
     },
   },
   {

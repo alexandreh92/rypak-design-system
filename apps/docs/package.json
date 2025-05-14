@@ -4,13 +4,13 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "storybook dev -p 6006 --no-open",
     "prebuild": "panda codegen",
     "build": "storybook build --docs",
     "preview-storybook": "serve storybook-static",
     "lint": "eslint './src/**/*.{ts,tsx,mdx}'  --max-warnings 0",
     "lint:ci": "eslint './src/**/*.{ts,tsx,mdx}' --format junit -o reports/lint/js-lint-results.xml --max-warnings 0",
-    "prepare": "panda codegen",
     "clean": "rm -rf node_modules && rm -rf storybook-static && rm -rf styled-system",
     "cache:clean": "rm -rf node_modules/.cache && rm -rf storybook-static && rm -rf styled-system"
   },
