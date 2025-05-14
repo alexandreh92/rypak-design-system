@@ -10,10 +10,12 @@
       "cache": true
     },
     "lint": {
+      "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "src/**", "node_modules"],
       "cache": true
     },
     "test": {
+      "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "src/**", "node_modules"],
       "cache": true
     }
