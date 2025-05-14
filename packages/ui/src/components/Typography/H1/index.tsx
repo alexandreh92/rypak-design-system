@@ -1,4 +1,5 @@
 import { ComponentProps } from 'react';
+
 import { styled } from 'styled-system/jsx';
 
 const H1Style = styled('h1', {

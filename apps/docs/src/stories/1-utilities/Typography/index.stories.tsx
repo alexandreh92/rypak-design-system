@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import H1, { H1Type } from '@rypak/ui/components/Typography/H1';
+import H1 from '@rypak/ui/components/Typography/H1';
 // "/Users/alexandre/rypak-design-system/packages/ui/src/components/Typography/H1/index"
 // import TestComponent, {
 //   TestComponentProps,

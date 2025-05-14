@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+
 import { render, screen, within, userEvent } from 'test-utils';
 
 import Portal from '.';
