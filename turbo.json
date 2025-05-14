@@ -4,6 +4,7 @@
     "build": {},
     "lint": {},
     "lint:ci": {
+      "dependsOn": ["^build"],
       "outputs": ["reports/lint/js-lint-results.xml"],
       "cache": true
     },
@@ -11,7 +12,7 @@
     "test": {},
     "clean": {},
     "test:ci": {
-      "inputs": [],
+      "dependsOn": ["^build"],
       "outputs": ["reports/junit/report.xml"],
       "cache": true
     }

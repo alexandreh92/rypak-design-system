@@ -1,6 +1,13 @@
 import { css, cx } from 'styled-system/css';
 
-function App({ ...rest }) {
+export interface AppsProps {
+  /** Main content for the component */
+  something: string;
+  /** Optional class name for custom styling */
+  className?: string;
+}
+
+function App({ something, ...rest }: AppsProps) {
   const { className, ...props } = rest;
   return (
     <div

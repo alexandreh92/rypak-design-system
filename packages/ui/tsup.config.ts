@@ -10,6 +10,6 @@ export default defineConfig((options) => ({
   treeshake: true,
   minify: true,
   external: [/node_modules/],
-  ignore: ['**/*.test.tsx', '**/*.spec.tsx', 'src/setup/**'],
+  ignore: ['**/*.test.@(ts|tsx)', '**/*.spec.tsx', 'src/setup/**'],
   ...options,
 }));

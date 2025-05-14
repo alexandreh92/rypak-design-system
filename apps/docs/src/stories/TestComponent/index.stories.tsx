@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Test } from '@rypak/ui';
+import TestComponent, { TestComponentProps } from '../../TestComponent';
 
-const meta: Meta<typeof Test> = {
-  component: Test,
-  render: ({ ...args }) => <Test {...args} />,
+const meta: Meta<TestComponentProps> = {
+  component: TestComponent,
+  render: ({ ...args }) => <TestComponent {...args} />,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Test>;
+type Story = StoryObj<TestComponentProps>;
 
 /*
  *👇 Render functions are a framework specific feature to allow you control on how the component renders.

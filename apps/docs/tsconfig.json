@@ -1,11 +1,13 @@
 {
   "extends": "@rypak/typescript-config/react-app.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@rypak/ui/styled-system/*": ["../../packages/ui/styled-system/*"],
+      "@rypak/ui/*": ["../../packages/ui/src/*"],
+      "styled-system/*": ["../../packages/ui/styled-system/*"]
+    }
+  },
   "include": ["."],
-  "exclude": [
-    "dist",
-    "build",
-    "node_modules",
-    "storybook-static",
-    "styled-system"
-  ]
+  "exclude": ["dist", "build", "storybook-static"]
 }

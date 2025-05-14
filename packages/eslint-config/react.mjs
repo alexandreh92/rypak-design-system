@@ -23,12 +23,18 @@ export default defineConfig([
   pluginJs.configs.recommended,
   pluginReact.configs.flat.recommended,
   jsxA11y.flatConfigs.recommended,
-  importPlugin.flatConfigs.recommended,
+  {
+    ...importPlugin.flatConfigs.recommended,
+  },
   reactHooks.configs['recommended-latest'],
   prettier,
   ...tseslint.config({
-    files: ['**/*.ts', '**/*.tsx'],
-    extends: tseslint.configs.recommended,
+    files: ['**/*.ts', '**/*.tsx', '**/*.mdx'],
+    extends: [
+      tseslint.configs.recommended,
+      importPlugin.flatConfigs.errors,
+      importPlugin.flatConfigs.typescript,
+    ],
     rules: {
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -43,18 +49,8 @@ export default defineConfig([
         },
       ],
       'react/react-in-jsx-scope': 'off',
-    },
-  }),
-  {
-    settings: {
-      react: {
-        version: 'detect',
-      },
-    },
-    rules: {
-      'prettier/prettier': 'error',
-      'no-trailing-spaces': ['error'],
-      'import/no-unresolved': 'off',
+      'import/no-empty-named-blocks': 'error',
+      'import/named': 'error',
       'import/order': [
         'error',
         {
@@ -75,6 +71,29 @@ export default defineConfig([
           distinctGroup: false,
         },
       ],
+      'import/no-extraneous-dependencies': [
+        'error',
+        {
+          devDependencies: [
+            '**/setup/tests/**',
+            '**/*.test.js',
+            '**/*.spec.js',
+            '**/*.stories.tsx',
+            '**/*.mdx',
+          ],
+        },
+      ],
+    },
+  }),
+  {
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+    rules: {
+      'prettier/prettier': 'error',
+      'no-trailing-spaces': ['error'],
     },
   },
   {
@@ -90,6 +109,15 @@ export default defineConfig([
       'vitest/prefer-describe-function-title': 'off',
       'vitest/prefer-expect-assertions': 'off',
       'vitest/prefer-lowercase-title': 'off',
+    },
+  },
+  {
+    settings: {
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+        },
+      },
     },
   },
 ]);

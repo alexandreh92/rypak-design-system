@@ -1,5 +1,4 @@
 import { defineConfig } from '@pandacss/dev';
-import pandaPreset from '@pandacss/preset-panda';
 import { defaultPreset } from '@rypak/panda-preset';
 
 export default defineConfig({
@@ -16,7 +15,7 @@ export default defineConfig({
   // Files to exclude
   exclude: [],
 
-  presets: [pandaPreset, defaultPreset],
+  presets: [defaultPreset],
 
   clean: true,
 

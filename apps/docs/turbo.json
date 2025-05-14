@@ -13,6 +13,7 @@
       "cache": false
     },
     "lint": {
+      "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "src/**", "node_modules"],
       "cache": true
     }

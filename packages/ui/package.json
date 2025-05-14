@@ -3,18 +3,26 @@
   "version": "0.0.0",
   "sideEffects": false,
   "license": "MIT",
-  "main": "./dist/src/index.js",
+  "main": "./dist/src/index.mjs",
   "types": "./dist/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/src/index.d.mts",
+        "types": "./dist/src/index.d.ts",
         "default": "./dist/src/index.mjs"
       },
       "require": {
         "types": "./dist/src/index.d.ts",
         "default": "./dist/src/index.js"
       }
+    },
+    "./components/*": {
+      "types": "./dist/src/components/*.d.ts",
+      "import": "./dist/src/components/*.mjs",
+      "require": "./dist/src/components/*.js"
     },
     "./styled-system/styles.css": {
       "import": "./dist/styled-system/styles.css",
@@ -52,13 +60,13 @@
     }
   },
   "scripts": {
+    "prepare": "turbo run @rypak/panda-preset#build && panda codegen",
     "prebuild": "panda codegen",
     "build": "panda build && tsup",
-    "prepare": "panda codegen",
     "lint": "eslint './src/**/*.{ts,tsx}' --max-warnings 0",
     "lint:ci": "eslint './src/**/*.{ts,tsx}' --format junit -o reports/lint/js-lint-results.xml --max-warnings 0",
     "test": "vitest",
-    "test:ci": "vitest --run --reporter=default --silent --reporter=junit --outputFile.junit ./reports/junit/report.xml",
+    "test:ci": "vitest --run --reporter=default --reporter=junit --outputFile.junit ./reports/junit/report.xml",
     "clean": "rm -rf node_modules && rm -rf dist && rm -rf styled-system"
   },
   "devDependencies": {
