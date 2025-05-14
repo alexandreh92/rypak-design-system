@@ -1,0 +1,52 @@
+import { Canvas, Meta, Source, ArgTypes, Controls } from '@storybook/blocks';
+
+import * as Stories from './index.stories';
+
+<Meta of={Stories} />
+
+# Typography
+The typography utility provides a set of classes for controlling the font size, weight, and line height of text elements.
+It is designed to be used in conjunction with other utility classes to create a consistent and visually appealing typographic hierarchy.
+
+<Source language="jsx" code="import { Typography } from '@rypak/ui'" />
+
+## H1
+
+The H1 utility class is used to style the main heading of a page or section.
+It typically has the largest font size and is used to indicate the most important content on the page.
+
+<Canvas of={Stories.H1Story} />
+
+{/*
+## H2
+
+The H2 utility class is used to style subheadings or section titles.
+It typically has a smaller font size than the H1 class and is used to indicate content that is less important than the main heading.
+
+<Canvas of={Stories.H2Story} />
+
+
+## H3
+The H3 utility class is used to style subheadings or section titles.
+It typically has a smaller font size than the H2 class and is used to indicate content that is less important than the subheading.
+
+<Canvas of={Stories.H3Story} />
+
+## H4
+The H4 utility class is used to style subheadings or section titles.
+It typically has a smaller font size than the H3 class and is used to indicate content that is less important than the subheading.
+
+<Canvas of={Stories.H4Story} />
+
+
+
+## Paragraph
+The Paragraph utility class is used to style body text.
+It typically has a smaller font size than the heading classes and is used to indicate content that is less important than the headings.
+
+<Canvas of={Stories.PStory} />
+
+<Controls of={Stories.PStory}  /> */}
+
+<ArgTypes of={Stories} />
+

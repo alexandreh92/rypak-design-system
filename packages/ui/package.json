@@ -3,18 +3,26 @@
   "version": "0.0.0",
   "sideEffects": false,
   "license": "MIT",
-  "main": "./dist/src/index.js",
+  "main": "./dist/src/index.mjs",
   "types": "./dist/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/src/index.d.mts",
+        "types": "./dist/src/index.d.ts",
         "default": "./dist/src/index.mjs"
       },
       "require": {
         "types": "./dist/src/index.d.ts",
         "default": "./dist/src/index.js"
       }
+    },
+    "./components/*": {
+      "types": "./dist/src/components/*.d.ts",
+      "import": "./dist/src/components/*.mjs",
+      "require": "./dist/src/components/*.js"
     },
     "./styled-system/styles.css": {
       "import": "./dist/styled-system/styles.css",

@@ -4,7 +4,15 @@ import '../src/index.css';
 
 const preview: Preview = {
   decorators: [],
-  parameters: {},
+  parameters: {
+    viewMode: 'docs',
+    docs: {
+      source: {
+        type: 'dynamic',
+        excludeDecorators: true,
+      },
+    },
+  },
   globalTypes: {},
   initialGlobals: {},
 };

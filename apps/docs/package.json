@@ -11,7 +11,8 @@
     "lint": "eslint './src/**/*.{ts,tsx,mdx}'  --max-warnings 0",
     "lint:ci": "eslint './src/**/*.{ts,tsx,mdx}' --format junit -o reports/lint/js-lint-results.xml --max-warnings 0",
     "prepare": "panda codegen",
-    "clean": "rm -rf node_modules && rm -rf storybook-static && rm -rf styled-system"
+    "clean": "rm -rf node_modules && rm -rf storybook-static && rm -rf styled-system",
+    "cache:clean": "rm -rf node_modules/.cache && rm -rf storybook-static && rm -rf styled-system"
   },
   "dependencies": {
     "@rypak/ui": "workspace:*",
@@ -19,22 +20,26 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@joshwooding/vite-plugin-react-docgen-typescript": "^0.6.0",
     "@pandacss/dev": "^0.53.5",
     "@rypak/eslint-config": "workspace:*",
     "@rypak/panda-preset": "workspace:*",
     "@rypak/prettier-config": "workspace:*",
     "@rypak/typescript-config": "workspace:*",
     "@storybook/addon-actions": "^8.2.6",
+    "@storybook/addon-docs": "^8.6.12",
     "@storybook/addon-essentials": "^8.2.6",
     "@storybook/addon-links": "^8.2.6",
     "@storybook/blocks": "^8.2.6",
     "@storybook/react": "^8.2.6",
     "@storybook/react-vite": "^8.2.6",
     "@vitejs/plugin-react": "^4.2.1",
+    "react-docgen-typescript": "^2.2.2",
     "serve": "^14.2.1",
     "storybook": "^8.2.6",
     "turbo": "^2.3.3",
     "typescript": "5.5.4",
-    "vite": "^5.1.4"
+    "vite": "^5.1.4",
+    "vite-tsconfig-paths": "^5.1.4"
   }
 }

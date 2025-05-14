@@ -1,33 +1,16 @@
-import { Canvas, Meta, Story } from '@storybook/blocks';
+import { Test } from '@rypak/ui'
+import { Canvas, Meta, Story, Controls, ArgTypes, PureArgsTable } from '@storybook/blocks';
 
 import * as PageStories from './index.stories';
 
 <Meta of={PageStories} />
 
-# Page
-
-Page is a layout container that is used to position children in predetermined areas.
-
-It's often used to apply consistent positioning for content across pages in an application
-
 ## Usage
 
 <Canvas of={PageStories.Primary}  withToolbar />
-<Story of={PageStories.Primary} />
-
-
-# List
-
-List is a grouping of related items. List can be ordered with multiple levels of nesting.
-
-## Usage
-
-{/* <Story of={ListStories.Filled} /> */}
-
-# List Item
-
-List items are used to group related content in a list. They must be nested within a List component.
-
-## Usage
 
 {/* <Story of={ListItemStories.Starter} meta={ListItemStories} /> */}
+
+## Table
+
+<Controls of={PageStories.Primary} />
