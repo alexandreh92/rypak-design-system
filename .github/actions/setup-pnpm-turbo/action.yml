@@ -22,5 +22,5 @@ runs:
         cache: 'pnpm'
 
     - name: Install pnpm packages
-      run: pnpm install --ignore-scripts
+      run: pnpm install
       shell: bash
