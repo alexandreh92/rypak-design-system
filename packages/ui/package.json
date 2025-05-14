@@ -62,7 +62,6 @@
   "scripts": {
     "prebuild": "panda codegen",
     "build": "panda build && tsup",
-    "prepare": "panda codegen",
     "lint": "eslint './src/**/*.{ts,tsx}' --max-warnings 0",
     "lint:ci": "eslint './src/**/*.{ts,tsx}' --format junit -o reports/lint/js-lint-results.xml --max-warnings 0",
     "test": "vitest",
