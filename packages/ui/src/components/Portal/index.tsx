@@ -9,7 +9,7 @@ import PortalRoot from './Root';
  * Props for the Portal component.
  * Extends PortalRootProps which contains properties for portal positioning and behavior.
  */
-interface PortalProps extends PortalRootProps {
+export interface PortalProps extends PortalRootProps {
   /** Content to be rendered inside the portal */
   children: ReactNode;
 
@@ -33,7 +33,7 @@ interface PortalProps extends PortalRootProps {
  * Portal can be controlled via the isOpen prop or through an optional trigger element
  * that toggles the portal when clicked.
  */
-export default function Portal({
+export function Portal({
   children,
   isOpen,
   onClose,
@@ -57,3 +57,5 @@ export default function Portal({
     </>
   );
 }
+
+export default Portal;

@@ -1,8 +1,6 @@
-import { ComponentProps } from 'react';
-
 import { styled } from 'styled-system/jsx';
 
-const H1Style = styled('h1', {
+export const H1 = styled('h1', {
   base: {
     textStyle: {
       base: 'h1',
@@ -12,10 +10,6 @@ const H1Style = styled('h1', {
   },
 });
 
-const H1 = (props: ComponentProps<typeof H1Style>) => {
-  return <H1Style {...props} />;
-};
+H1.displayName = 'H1';
 
 export default H1;
-
-export type H1Type = ComponentProps<typeof H1>;

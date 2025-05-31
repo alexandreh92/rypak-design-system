@@ -1,21 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Test } from '@rypak/ui';
+import Portal from '@rypak/ui/components/Portal';
 
-const meta: Meta<typeof Test> = {
-  component: Test,
-  render: ({ ...args }) => <Test {...args} />,
+const meta: Meta<typeof Portal> = {
+  component: Portal,
+  render: ({ ...args }) => <Portal {...args} />,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Test>;
+type Story = StoryObj<typeof Portal>;
 
-/*
- *👇 Render functions are a framework specific feature to allow you control on how the component renders.
- * See https://storybook.js.org/docs/react/api/csf
- * to learn how to use render functions.
- */
 export const Primary: Story = {
   name: 'primary',
+  args: {
+    children: 'Portal content',
+    isOpen: true,
+    onClose: () => console.log('Portal closed'),
+    onOpen: () => console.log('Portal opened'),
+    trigger: <button>Toggle Portal</button>,
+  },
 };
