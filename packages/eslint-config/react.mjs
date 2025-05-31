@@ -51,7 +51,6 @@ export default defineConfig([
       'react/react-in-jsx-scope': 'off',
       'import/no-empty-named-blocks': 'error',
       'import/no-named-as-default': 'off',
-      'import/named': 'error',
       'import/order': [
         'error',
         {
