@@ -1,1 +1,5 @@
-module.exports = require('@rypak/prettier-config');
+const defaultConfig = require('@rypak/prettier-config');
+
+module.exports = {
+  ...defaultConfig,
+};

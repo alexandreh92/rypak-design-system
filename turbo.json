@@ -10,7 +10,9 @@
     },
     "dev": {},
     "test": {},
-    "clean": {},
+    "clean": {
+      "cache": false
+    },
     "test:ci": {
       "dependsOn": ["^build"],
       "outputs": ["reports/junit/report.xml"],

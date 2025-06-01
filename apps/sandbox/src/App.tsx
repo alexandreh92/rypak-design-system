@@ -1,9 +1,8 @@
-import { Test } from '@rypak/ui';
-
+import { P } from '@rypak/ui/components/Typography/P';
 function App() {
   return (
     <div>
-      <Test />
+      <P size="xs">Test</P>
     </div>
   );
 }
