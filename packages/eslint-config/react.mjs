@@ -36,6 +36,7 @@ export default defineConfig([
       importPlugin.flatConfigs.typescript,
     ],
     rules: {
+      'import/no-named-as-default': 'off',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -50,7 +51,7 @@ export default defineConfig([
       ],
       'react/react-in-jsx-scope': 'off',
       'import/no-empty-named-blocks': 'error',
-      'import/no-named-as-default': 'off',
+      'import/named': 'error',
       'import/order': [
         'error',
         {
