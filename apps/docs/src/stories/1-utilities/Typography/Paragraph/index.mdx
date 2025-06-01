@@ -1,0 +1,109 @@
+import { Canvas, Meta, Source, ArgTypes } from '@storybook/addon-docs/blocks';
+
+import * as Stories from './index.stories';
+
+<Meta of={Stories} />
+
+# Paragraph (P)
+
+<Source language="jsx" code="import { P } from '@rypak/ui'" />
+
+## Overview
+
+The `P` component is a fundamental typography element used for paragraph text in
+the design system. It provides consistent styling and proper semantics for
+blocks of text, ensuring readability and accessibility across the application.
+
+The `P` component:
+
+- Renders as a semantic `<p>` HTML element
+- Maintains consistent typographic styles
+- Supports various text sizes and weights
+- Can be customized with different colors and alignments
+- Ensures proper text spacing and readability
+
+## Examples
+
+### Sizes
+
+#### Extra Small
+
+<Canvas of={Stories.ExtraSmall} />
+
+#### Small (Default)
+
+<Canvas of={Stories.Small} />
+
+#### Medium
+
+<Canvas of={Stories.Medium} />
+
+#### Large
+
+<Canvas of={Stories.Large} />
+
+## Design Guidelines
+
+- Use the `P` component for all paragraph text to maintain consistency
+- Maintain adequate contrast between text and background colors (minimum 4.5:1
+  for normal text)
+- Avoid using very small text sizes that could make content difficult to read
+- Use appropriate line height to ensure readability, especially for longer
+  blocks of text
+- Consider text alignment based on context (left-aligned is typically best for
+  paragraphs)
+
+## UI Copy
+
+- Keep paragraphs concise and focused on a single idea
+- Use simple, clear language that is easy to understand
+- Avoid using all caps, excessive bold, or italic for paragraph text
+- Break long blocks of text into smaller, digestible paragraphs
+- Maintain a consistent tone of voice throughout the application
+
+## Accessibility
+
+- The `P` component uses the semantic `<p>` HTML element, which helps screen
+  readers identify paragraph content
+- Text size can be adjusted to meet accessibility standards (minimum 16px for
+  body text is recommended)
+- Line height and letter spacing are optimized for readability, including for
+  users with dyslexia or visual impairments
+- Color contrast meets WCAG AA standards (4.5:1 for normal text)
+- Text remains accessible when users increase their browser's font size
+
+## API
+
+### Usage
+
+```jsx
+import { P } from '@rypak/ui';
+
+function MyComponent() {
+  return (
+    <P size="md">
+      This is a paragraph of text that demonstrates the P component.
+    </P>
+  );
+}
+```
+
+## Properties
+
+The `P` component extends:
+
+- All HTML paragraph element attributes
+  (`React.HTMLAttributes<HTMLParagraphElement>`)
+- All Panda CSS styled component properties
+
+<ArgTypes of={Stories} />
+
+## Caveats and Limitations
+
+- Extremely long words might cause layout issues in responsive designs
+- Custom styling may override default accessibility features and should be used
+  carefully
+- Font rendering may vary slightly across different browsers and operating
+  systems
+- For text that requires specific semantic meaning beyond paragraphs, consider
+  using other typography components

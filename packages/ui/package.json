@@ -19,10 +19,15 @@
         "default": "./dist/src/index.js"
       }
     },
+    "./components/Portal": {
+      "types": "./dist/src/components/Portal/index.d.ts",
+      "import": "./dist/src/components/Portal/index.mjs",
+      "require": "./dist/src/components/Portal/index.js"
+    },
     "./components/*": {
-      "types": "./dist/src/components/*.d.ts",
-      "import": "./dist/src/components/*.mjs",
-      "require": "./dist/src/components/*.js"
+      "types": "./dist/src/components/*/index.d.ts",
+      "import": "./dist/src/components/*/index.mjs",
+      "require": "./dist/src/components/*/index.js"
     },
     "./styled-system/styles.css": {
       "import": "./dist/styled-system/styles.css",

@@ -1,23 +1,23 @@
-import { dirname, join, resolve } from 'path';
+import { resolve } from 'path';
 
 import type { StorybookConfig } from '@storybook/react-vite';
 
-import tsconfigPaths from 'vite-tsconfig-paths';
-
-function getAbsolutePath(value) {
-  return dirname(require.resolve(join(value, 'package.json')));
-}
-
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/stories/**/*.stories.tsx'],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
-    getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-essentials'),
+    '@storybook/addon-onboarding',
+    '@chromatic-com/storybook',
+    '@storybook/addon-docs',
+    '@storybook/addon-a11y',
+    '@storybook/addon-vitest',
   ],
-
   framework: {
-    name: getAbsolutePath('@storybook/react-vite'),
+    name: '@storybook/react-vite',
     options: {},
+  },
+  core: {
+    disableTelemetry: true,
+    enableCrashReports: false,
   },
   typescript: {
     check: false,
@@ -27,6 +27,9 @@ const config: StorybookConfig = {
         baseUrl: '.',
         allowSyntheticDefaultImports: true,
         esModuleInterop: true,
+        houldExtractLiteralValuesFromEnum: true,
+        shouldRemoveUndefinedFromOptional: true,
+        savePropValueAsString: true,
         paths: {
           '@rypak/ui/styled-system/*': ['../../packages/ui/styled-system/*'],
           '@rypak/ui/*': ['../../packages/ui/src/*'],
@@ -34,30 +37,24 @@ const config: StorybookConfig = {
         },
       },
       tsconfigPath: resolve(__dirname, '../tsconfig.json'),
-      shouldExtractLiteralValuesFromEnum: true,
-      shouldRemoveUndefinedFromOptional: true,
-      EXPERIMENTAL_useWatchProgram: true,
-      savePropValueAsString: true,
-      skipChildrenPropWithoutDoc: true,
       propFilter: (prop) => {
-        console.log({ prop });
+        if (prop.name === 'children') {
+          return true;
+        }
+
+        if (prop.parent) {
+          return !(
+            /@types\/react/.test(prop.parent.fileName) ||
+            /styled-system\/types/.test(prop.parent.fileName)
+          );
+        }
+
         return true;
       },
     },
-  },
-  core: {
-    enableCrashReports: false,
-    disableTelemetry: true,
-  },
-  viteFinal: async (config) => {
-    return {
-      plugins: [...(config.plugins || []), tsconfigPaths()],
-      ...config,
-    };
   },
   docs: {
     docsMode: true,
   },
 };
-
 export default config;

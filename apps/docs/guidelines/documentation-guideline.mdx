@@ -1,0 +1,103 @@
+import { Canvas, Meta, Source, ArgTypes } from '@storybook/addon-docs/blocks';
+
+import * as Stories from './index.stories';
+
+<Meta of={Stories} />
+
+# Component Name
+
+<Source language="jsx" code="import { ComponentName } from '@rypak/ui'" />
+
+## Overview
+
+A brief description of the component and its purpose. This section should
+provide an overview of the component's functionality and how it fits into the
+overall design system.
+
+Example text:
+
+An `Accordion` is a panel that is vertically stacked with other `Accordions` and
+can be opened and closed independent of the others. They're used to organize
+sections of related content on a page and reduce clutter by having them closed
+by default until a user opens them.
+
+There are two sizes:
+
+- Large (High emphasis)
+- Medium (Low emphasis)
+
+The `Accordion` includes:
+
+- Title
+- Content
+
+The `Accordion` Title can include:
+
+- Label
+- Icon and Label
+
+## Examples
+
+This section should provide examples of how to use the component in different
+contexts. Let it blank so the developer should populate it.
+
+{/* Ideally for each variant prop, one section like this */}
+
+{/* ### Label */}
+
+{/* Then List variation options */}
+
+{/* #### Large */}
+
+{/* <Canvas of={Stories.MyLargeLabelStory} /> */}
+
+{/* #### Medium */}
+
+{/* ...etc */}
+
+## Design Guidelines
+
+This section should provide design guidelines for using the component. It should
+include information about when to use the component, how to use it, and any best
+practices or considerations to keep in mind.
+
+## UI Copy
+
+This section shows the best practices for writing UI copy. It should include
+information about avoding large labels, or do not use italic or bold in
+different contexts.
+
+## Accessibility
+
+This section should provide information about the accessibility features of the
+component. It should include information about how the component is designed to
+be accessible to users with disabilities, and any best practices or
+considerations to keep in mind when using the component.
+
+## API
+
+### Usage
+
+This section should provide information about how to use the component in code.
+It should include information about the component's API, including any
+properties, methods, and events that are available. Most of the times this will
+be a <Source/> block with the code example.
+
+#### Tricky/smart use case that we can do (for example toggle a state imperatively, etc...)
+
+Show description of the use case, the code and how to do it.
+
+#### Another use case
+
+{/* ... */}
+
+### Properties
+
+<ArgTypes of={Stories} />
+
+### Caveats and Limitations
+
+This section should provide information about any caveats or limitations of the
+component. It should include information about any known issues, limitations,
+and workarounds that are available. It should also include information about any
+known compatibility issues with other components or libraries.

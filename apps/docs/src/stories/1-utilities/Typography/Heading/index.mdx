@@ -1,0 +1,113 @@
+import { Canvas, Meta, Source, ArgTypes } from '@storybook/addon-docs/blocks';
+
+import * as Stories from './index.stories';
+
+<Meta of={Stories} />
+
+# Heading (H1, H2, H3, H4)
+
+<Source language="jsx" code="import { H1, H2, H3, H4 } from '@rypak/ui'" />
+
+## Overview
+
+Headings are typographic elements used to create a clear hierarchy of content on
+a page. They help users navigate through content and understand the relationship
+between different sections.
+
+The Heading components include four levels:
+
+- `H1`: Main page title, used once per page
+- `H2`: Section titles
+- `H3`: Subsection titles
+- `H4`: Minor subsection titles
+
+Each heading component automatically applies the correct font size, weight, line
+height, and margins to maintain consistent typography across the application.
+
+## Examples
+
+### H1 - Primary Heading
+
+<Canvas of={Stories.H1Story} />
+
+### H2 - Secondary Heading
+
+<Canvas of={Stories.H2Story} />
+
+### H3 - Tertiary Heading
+
+<Canvas of={Stories.H3Story} />
+
+### H4 - Quaternary Heading
+
+<Canvas of={Stories.H4Story} />
+
+## Design Guidelines
+
+- Use headings to create a clear content hierarchy
+- Include only one H1 per page to represent the main page title
+- Maintain hierarchical order (H1 → H2 → H3 → H4) without skipping levels
+- Keep headings concise and descriptive
+- Avoid using headings for styling purposes only
+- Ensure sufficient contrast between heading text and background
+
+## UI Copy
+
+- Keep headings concise (ideally under 8 words)
+- Use sentence case for all headings
+- Avoid using punctuation at the end of headings
+- Don't use all caps or excessive formatting (bold, italic) within headings
+- Ensure headings accurately describe the content that follows
+
+## Accessibility
+
+- Proper heading structure is essential for screen reader navigation
+- Users can navigate between headings using keyboard shortcuts
+- Maintain hierarchical structure (don't skip levels) for better screen reader
+  experience
+- Do not use heading elements solely for styling purposes
+- Ensure sufficient color contrast (WCAG AA 4.5:1 for normal text, 3:1 for large
+  text)
+- Headings can be targeted with ARIA landmarks for enhanced navigation
+
+## API
+
+### Usage
+
+```jsx
+import { H1, H2, H3, H4 } from '@rypak/ui';
+
+function MyComponent() {
+  return (
+    <div>
+      <H1>Page Title</H1>
+      <section>
+        <H2>Section Title</H2>
+        <p>Section content goes here.</p>
+
+        <H3>Subsection Title</H3>
+        <p>Subsection content goes here.</p>
+
+        <H4>Minor Subsection</H4>
+        <p>Minor subsection content goes here.</p>
+      </section>
+    </div>
+  );
+}
+```
+
+### Properties
+
+<ArgTypes of={Stories} />
+
+Each heading component accepts all standard HTML attributes for the `<h1>`,
+`<h2>`, `<h3>`, and `<h4>` elements respectively.
+
+### Caveats and Limitations
+
+- Avoid overriding the font-family, as it's a core part of the design system's
+  typography
+- While you can customize the appearance with className or style props, maintain
+  sufficient contrast and readability
+- For SEO and accessibility reasons, there should only be one H1 per page
+- Excessive customization may lead to inconsistent UI across the application
