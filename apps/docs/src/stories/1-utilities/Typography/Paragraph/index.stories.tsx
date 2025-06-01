@@ -6,9 +6,6 @@ const meta: Meta<typeof P> = {
   title: 'Utilities/Typography/Paragraph',
   component: P,
   render: ({ ...args }) => <P {...args} />,
-  args: {
-    size: 'sm', // Default value
-  },
   argTypes: {
     size: {
       table: {
